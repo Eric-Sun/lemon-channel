@@ -1,0 +1,57 @@
+{% extends base.html %}
+
+{% block body %}  
+    <!-- Page Head -->
+    <ul class="shortcut-buttons-set">
+      <li></li>
+    </ul>
+    <!-- End .shortcut-buttons-set -->
+    <div class="clear"></div>
+    <!-- End .clear -->
+    <div class="content-box">
+      <!-- Start Content Box -->
+      <div class="content-box-header">
+        <h3>当日明细数据</h3>
+        
+        <div class="clear"></div>
+      </div>
+      <!-- End .content-box-header -->
+      <div class="content-box-content">
+        <div class="tab-content default-tab" id="tab1">
+          <table>
+            <thead>
+              <tr>
+                <th>产品编号</th>
+                <th>合作编号</th>
+                {% if not current_user.channel %}<th>子帐号</th>{% end %}
+                <th>点播号</th>
+                <th>指令</th>
+                <th>手机号</th>
+                <th>分成价格(元)</th>
+                <th>订购时间</th>
+              </tr>
+            </thead>
+            {% include 'pagination.html' %}
+            <tbody>
+            {% for entry in entries %}
+              <tr>
+                <td>{{entry.pid}}</td>
+                <td>{{entry.wid}}</td>
+                {% if not current_user.channel %}<td>{{entry.channel}}</td>{% end %}
+                <td>{{entry.orderdest}}</td>
+                <td>{{entry.ordercode}}</td>
+                <td>{{entry.mobile[:4]+"****"+entry.mobile[8:]}}</td>
+                <td>{{entry.feeincome}}</td>
+                <td>{{entry.subtime}}</td>
+              </tr>
+              {% end %}
+            </tbody>
+          </table>
+        </div>
+        <!-- End #tab1 -->
+      </div>
+      <!-- End .content-box-content -->
+    </div>
+    <!-- End .content-box -->
+    
+{% end %}

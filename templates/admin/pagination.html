@@ -1,0 +1,32 @@
+<tfoot>
+              <tr>
+                <td colspan="10">
+                  <div class="bulk-actions align-left">
+                  </div>
+                  <div class="pagination"> 
+                      {% if hasPrevPage %}  
+	                  <a href="?type={{type}}&page=1" title="First Page">&laquo; 第一页</a>
+	                  <a href="?type={{type}}&page={{prevPage}}" title="Previous Page">&laquo; 上一页›</a> 
+	                  {% end %}
+	                  {% if not hasPrevPage %}  
+                      <a href="#" title="First Page" class="noaction">&laquo; 第一页</a>
+                      <a href="#" title="Previous Page" class="noaction">&laquo; 上一页</a> 
+                      {% end %}
+	                  {% for pageNo in range(minPage, maxPage+1) %}
+	                  <a href="?type={{type}}&page={{pageNo}}" class="number {% if pageNo == page%}current{% end %}" title="1">{{ pageNo }}</a>
+	                  {% end %}
+	                  {% if hasNextPage %}  
+                      <a href="?type={{type}}&page={{nextPage}}" title="Next Page">下一页 &raquo;</a>
+                      <a href="?type={{type}}&page={{totalPage}}" title="Last Page">最后 &raquo;</a> 
+                      {% end %}
+                      {% if not hasNextPage %}  
+                      <a href="#" title="Next Page" class="noaction">下一页 &raquo;</a>
+                      <a href="#" title="Last Page" class="noaction">最后 &raquo;</a> 
+                      {% end %}
+	                  
+                  </div>
+                  <!-- End .pagination -->
+                  <div class="clear"></div>
+                </td>
+              </tr>
+            </tfoot>

@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>数据管理平台</title>
+<!--                       CSS                       -->
+<!-- Reset Stylesheet -->
+<link rel="stylesheet" href="/static/resources/css/reset.css" type="text/css" media="screen" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="/static/resources/css/style.css" type="text/css" media="screen" />
+<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+<link rel="stylesheet" href="/static/resources/css/invalid.css" type="text/css" media="screen" />
+<!--                       Javascripts                       -->
+<!-- jQuery -->
+<script type="text/javascript" src="/static/resources/scripts/jquery-1.3.2.min.js"></script>
+<!-- jQuery Configuration -->
+<script type="text/javascript" src="/static/resources/scripts/simpla.jquery.configuration.js"></script> 
+<script type="text/javascript">
+  function formvalid() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    if(username == "" || username.length < 4) {
+      alert("请输入正确的用户名!");
+      document.getElementById("username").focus();
+      return false;
+    }
+    if(password == "" || password.length < 4) {
+      alert("请输入正确的密码!");
+      document.getElementById("password").focus();
+      return false;
+    }
+    return true;
+  }
+</script>
+</head>
+<body id="login">
+<div id="login-wrapper" class="png_bg">
+  <div id="login-top">
+    <h1>Simpla Admin</h1>
+    <!-- Logo (221px width) -->
+    <img id="logo" src="/static/resources/images/logo.png" alt="Simpla Admin logo" /></div>
+  <!-- End #logn-top -->
+  <div id="login-content">
+    <form action="{{ request.path }}" method="post" onsubmit="return formvalid();">
+      
+      {% if len(handler.getMessages()) > 0 %}
+		<div class="notification error png_bg">
+		<div>{{ handler.getMessages() }}</div>
+		</div>  
+      {% end %}
+      
+      
+      <p>
+        <label>用户名</label>
+        <input class="text-input" type="text" name="username" id="username"/>
+      </p>
+      <div class="clear"></div>
+      <p>
+        <label>密&nbsp;&nbsp;码</label>
+        <input class="text-input" type="password" name="password" id="password"/>
+      </p>
+      <div class="clear"></div>
+      
+      <div class="clear"></div>
+      <p>
+        <input class="button" type="submit" value="登录" />
+      </p>
+      <input type="hidden" name="next" value="{{ next }}" />
+      {{ xsrf_form_html() }}
+    </form>
+  </div>
+  <!-- End #login-content -->
+</div>
+<!-- End #login-wrapper -->
+</body>
+</html>

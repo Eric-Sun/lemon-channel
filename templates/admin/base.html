@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>数据管理平台</title>
+<!--                       CSS                       -->
+<!-- Reset Stylesheet -->
+<link rel="stylesheet" href="/static/resources/css/reset.css" type="text/css" media="screen" />
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="/static/resources/css/style.css" type="text/css" media="screen" />
+<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+<link rel="stylesheet" href="/static/resources/css/invalid.css" type="text/css" media="screen" />
+<!--                       Javascripts                       -->
+<!-- jQuery -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<!-- jQuery Configuration -->
+<script type="text/javascript" src="/static/resources/scripts/simpla.jquery.configuration.js"></script>
+<!-- Fancybox jQuery Plugin -->
+<script type="text/javascript" src="/static/resources/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" href="/static/resources/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="/static/resources/scripts/jquery.validatelus.js"></script>
+</head>
+<body>
+<div id="body-wrapper">
+  <!-- Wrapper for the radial gradient background -->
+  <div id="sidebar">
+    <div id="sidebar-wrapper">
+      <!-- Sidebar with logo and menu -->
+      <h1 id="sidebar-title"><a href="#">Admin</a></h1>
+      <!-- Logo (221px wide) -->
+      <a href="http://"><img id="logo" src="/static/resources/images/logo.png" alt="Simpla Admin logo" /></a>
+      <!-- Sidebar Profile links -->
+      <div id="profile-links"> 欢迎, <a href="#">{{ current_user.username }}</a>  <a href="/auth/logout"><b style="font-size:14px;color:#18930C">安全退出</b></a><br />
+        <br />
+        今日收入: <span style="color:#F60">￥{{todayincome if todayincome else 0}}</span> 元<br/>
+        未结算收入: <span style="color:#F60">￥{{showincome if showincome else 0}}</span> 元</br>
+      </div>
+      <ul id="main-nav">
+        <li> <a href="payment" class="nav-top-item no-submenu"  id="menuType-payment"> 收入查询 </a></li>
+        {% if current_user.channel is None %}
+        <li> <a href="users" class="nav-top-item no-submenu"  id="menuType-users"> 子帐号列表 </a></li>
+        <li> <a href="channelPayment" class="nav-top-item no-submenu"  id="menuType-channelPayment"> 子帐号收入查询 </a></li>
+        {% end %}
+        <li> <a href="ivrdetail" class="nav-top-item no-submenu"  id="menuType-ivrdetail"> 当日明细查询 </a></li>
+        <li> <a href="modifyPwd" class="nav-top-item no-submenu" id="menuType-modifyPwd"> 修改密码 </a> </li>
+      </ul>
+      <script type="text/javascript">
+      $(function(){
+    	  $("#main-nav a#menuType-{{ menuType }}").addClass("current");
+      });
+      </script>
+    </div>
+  </div>
+  <!-- End #sidebar -->
+  
+  <div id="main-content">
+    {% block body %}{% end %}
+    
+    <div id="footer"> <small>
+      <!-- Remove this notice or replace it with whatever you want -->
+      &#169; Copyright 2012 </small> </div>
+    <!-- End #footer -->
+  </div>
+  <!-- End #main-content -->
+</div>
+</body>
+</html>
