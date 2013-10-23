@@ -1,10 +1,10 @@
 from tornado.options import define
 
 mysql_settings = dict(
-    host="localhost",
+    host="211.144.137.66",
     user="lemon",
     passwd="lemon001)(",
-    db="lemon",
+    db="lemon2",
 )
 
 database_types = dict(

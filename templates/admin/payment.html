@@ -18,6 +18,14 @@
       <!-- End .content-box-header -->
       <div class="content-box-content">
         <div class="tab-content default-tab" id="tab1">
+            <form action="/user/payment">
+                指令：<input type="text" name="ordercode"/>
+                时间：<input name="beginDate" id="datepicker" data-date="" data-date-format="yyyy-mm-dd" style="width: 80px;"
+                          size="16" type="text">到
+                <input name="endDate" id="datepicker1" data-date="" data-date-format="yyyy-mm-dd" style="width: 80px;"
+                       size="16" type="text">
+                <input type="submit" value="查询"/>
+            </form>
           <table>
             <thead>
               <tr>
@@ -47,5 +55,11 @@
       <!-- End .content-box-content -->
     </div>
     <!-- End .content-box -->
-    
+<script>
+
+    $(function () {
+        $("#datepicker").datepicker();
+        $("#datepicker1").datepicker();
+    });
+</script>
 {% end %}
